@@ -843,6 +843,7 @@ export async function init(): Promise<void> {
         }
       }
     } else {
+      //#e8e6e5
       if (language.name === "eyyy語"){
         let phrasesToGet = 4;
         for (let i = 0; i < phrasesToGet; i++){
