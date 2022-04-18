@@ -826,7 +826,6 @@ export async function init(): Promise<void> {
         (Config.mode == "words" && Config.words >= wordCount) ||
         (Config.mode === "time" && wordCount < 100)
       ) {
-        console.log("mode???")
         const section =
           Config.funbox == "wikipedia"
             ? await Wikipedia.getSection(Config.language)
@@ -845,14 +844,12 @@ export async function init(): Promise<void> {
       }
     } else {
       if (language.name === "eyyy語"){
-        let phrasesToGet =  4;
+        let phrasesToGet = 4;
         for (let i = 0; i < phrasesToGet; i++){
-          //randomIntFromRange
           let randomInt = Misc.randomIntFromRange(0,language.phrases.length-1);
-          let phrase = language.phrases[randomInt];
-          let splitPhrase =  phrase.split(' ');
-          for (let j = 0; j < splitPhrase.length; j++){
-            TestWords.words.push(splitPhrase[j]);
+          let phrase = language.phrases[randomInt].split(' ');
+          for (let j = 0; j < phrase.length; j++){
+            TestWords.words.push(phrase[j]);
           }
         }
       }
@@ -894,7 +891,6 @@ export async function init(): Promise<void> {
           }
         }
       }
-      console.log(TestWords.words)
     }
   } else if (Config.mode === "quote") {
     const quotesCollection = await QuotesController.getQuotes(
