@@ -41,5 +41,8 @@
     "hooks": {
       "pre-commit": "pretty-quick --staged && npm run lint"
     }
+  },
+  "dependencies": {
+    "node": "^16.13.2"
   }
 }

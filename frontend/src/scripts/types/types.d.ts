@@ -21,6 +21,7 @@ declare namespace MonkeyTypes {
     words: string[];
     accents: Accents;
     bcp47?: string;
+    phrases: string[];
   }
 
   type WordsModes = number;

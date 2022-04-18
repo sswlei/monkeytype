@@ -826,6 +826,7 @@ export async function init(): Promise<void> {
         (Config.mode == "words" && Config.words >= wordCount) ||
         (Config.mode === "time" && wordCount < 100)
       ) {
+        console.log("mode???")
         const section =
           Config.funbox == "wikipedia"
             ? await Wikipedia.getSection(Config.language)
@@ -843,41 +844,57 @@ export async function init(): Promise<void> {
         }
       }
     } else {
-      for (let i = 0; i < wordsBound; i++) {
-        const randomWord = await getNextWord(wordset, language, wordsBound);
-
-        if (/\t/g.test(randomWord)) {
-          TestWords.setHasTab(true);
-        }
-
-        if (/ +/.test(randomWord)) {
-          const randomList = randomWord.split(" ");
-          let id = 0;
-          while (id < randomList.length) {
-            TestWords.words.push(randomList[id]);
-            id++;
-
-            if (
-              TestWords.words.length == wordsBound &&
-              Config.mode == "custom" &&
-              CustomText.isWordRandom
-            ) {
-              break;
-            }
+      if (language.name === "eyyy語"){
+        let phrasesToGet =  4;
+        for (let i = 0; i < phrasesToGet; i++){
+          //randomIntFromRange
+          let randomInt = Misc.randomIntFromRange(0,language.phrases.length-1);
+          let phrase = language.phrases[randomInt];
+          let splitPhrase =  phrase.split(' ');
+          for (let j = 0; j < splitPhrase.length; j++){
+            TestWords.words.push(splitPhrase[j]);
           }
-          if (
-            Config.mode == "custom" &&
-            !CustomText.isWordRandom &&
-            !CustomText.isTimeRandom
-          ) {
-            //
-          } else {
-            i = TestWords.words.length - 1;
-          }
-        } else {
-          TestWords.words.push(randomWord);
         }
       }
+      else{
+        for (let i = 0; i < wordsBound; i++) {
+          const randomWord = await getNextWord(wordset, language, wordsBound);
+  
+          if (/\t/g.test(randomWord)) {
+            TestWords.setHasTab(true);
+          }
+  
+          if (/ +/.test(randomWord)) {
+            const randomList = randomWord.split(" ");
+            let id = 0;
+            while (id < randomList.length) {
+              TestWords.words.push(randomList[id]);
+  
+              id++;
+  
+              if (
+                TestWords.words.length == wordsBound &&
+                Config.mode == "custom" &&
+                CustomText.isWordRandom
+              ) {
+                break;
+              }
+            }
+            if (
+              Config.mode == "custom" &&
+              !CustomText.isWordRandom &&
+              !CustomText.isTimeRandom
+            ) {
+              //
+            } else {
+              i = TestWords.words.length - 1;
+            }
+          } else {
+            TestWords.words.push(randomWord);
+          }
+        }
+      }
+      console.log(TestWords.words)
     }
   } else if (Config.mode === "quote") {
     const quotesCollection = await QuotesController.getQuotes(

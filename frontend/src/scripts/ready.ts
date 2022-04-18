@@ -31,17 +31,17 @@ $(document).ready(() => {
   if (Config.quickTab) {
     $("#restartTestButton").addClass("hidden");
   }
-  if (!window.localStorage.getItem("merchbannerclosed")) {
-    Notifications.addBanner(
-      `Checkout our merchandise, available at <a target="_blank" href="https://monkeytype.store/">monkeytype.store</a>`,
-      1,
-      "images/merchdropwebsite2.png",
-      false,
-      () => {
-        window.localStorage.setItem("merchbannerclosed", "true");
-      }
-    );
-  }
+  // if (!window.localStorage.getItem("merchbannerclosed")) {
+  //   Notifications.addBanner(
+  //     `Checkout our merchandise, available at <a target="_blank" href="https://monkeytype.store/">monkeytype.store</a>`,
+  //     1,
+  //     "images/merchdropwebsite2.png",
+  //     false,
+  //     () => {
+  //       window.localStorage.setItem("merchbannerclosed", "true");
+  //     }
+  //   );
+  // }
   $("#centerContent")
     .css("opacity", "0")
     .removeClass("hidden")

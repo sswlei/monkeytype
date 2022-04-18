@@ -12,6 +12,10 @@
     ]
   },
   {
+    "name": "eyyy語",
+    "languages": ["eyyy語"]
+  },
+  {
     "name": "spanish",
     "languages": ["spanish", "spanish_1k", "spanish_10k"]
   },
